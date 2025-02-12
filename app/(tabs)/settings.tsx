@@ -4,7 +4,7 @@ import AddExpense from "@/components/AddExpense";
 
 export default function Settings() {
   return (
-    <SafeAreaView className="h-screen">
+    <SafeAreaView className="h-screen flex items-center justify-center">
       <Text>Settings</Text>
     </SafeAreaView>
   );

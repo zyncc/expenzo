@@ -1,4 +1,4 @@
-export const expenses: Expense[] = [
+export const expenses = [
   {
     category: "Food",
     title: "Burger",
@@ -64,6 +64,6 @@ export const expenses: Expense[] = [
 export type Expense = {
   category: string;
   title: string;
-  date: Date;
+  date: string;
   price: number;
 };

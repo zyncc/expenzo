@@ -2,7 +2,6 @@ import { View, Text } from "react-native";
 import React from "react";
 import { Expense } from "@/constants/expenses";
 import formatCurrency from "@/utils/formatCurrency";
-import { getDayMonth } from "@/utils/getShortDate";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import Feather from "@expo/vector-icons/Feather";
 
@@ -16,7 +15,6 @@ export default function RecentExpense({ data }: { data: Expense }) {
       ) : (
         <Feather name="shopping-bag" size={24} color="black" />
       )}
-
       <View className="flex-grow">
         <Text className="font-medium text-xl">{data.category}</Text>
         <Text className="font-regular text-base">{data.title}</Text>
@@ -27,7 +25,7 @@ export default function RecentExpense({ data }: { data: Expense }) {
             {formatCurrency(data.price)}
           </Text>
           <Text className="text-right font-medium">
-            {getDayMonth(data.date)}
+            {new Date(data.date).toDateString().slice(4, 10)}
           </Text>
         </View>
       </View>
