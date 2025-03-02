@@ -65,7 +65,7 @@ export default function Create() {
       <TextInput
         selectionColor={"black"}
         placeholder="Title"
-        className="p-3 border border-slate-300 rounded-2xl mb-3 text-base placeholder:font-extraBold"
+        className="p-3 border border-slate-300 rounded-2xl mb-3 text-base"
         placeholderTextColor="#000000"
         value={data.title}
         onChangeText={(text) => setData({ ...data, title: text })}
