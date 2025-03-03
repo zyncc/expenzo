@@ -2,7 +2,7 @@
   "expo": {
     "name": "Expenzo",
     "slug": "expenzo",
-    "version": "1.0.0",
+    "version": "1.0.4",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
     "scheme": "expenzo",
@@ -15,12 +15,12 @@
       }
     },
     "android": {
+      "softwareKeyboardLayoutMode": "pan",
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#fcd20d"
       },
-      "package": "com.zync1402.expenzo",
-      "runtimeVersion": "1.0.0"
+      "package": "com.zync1402.expenzo"
     },
     "web": {
       "bundler": "metro",
@@ -28,6 +28,12 @@
       "favicon": "./assets/images/favicon.png"
     },
     "plugins": [
+      [
+        "expo-updates",
+        {
+          "username": "zync1402"
+        }
+      ],
       "expo-router",
       [
         "expo-splash-screen",
@@ -40,6 +46,9 @@
       ],
       "expo-sqlite"
     ],
+    "runtimeVersion": {
+      "policy": "appVersion"
+    },
     "experiments": {
       "typedRoutes": true
     },
@@ -50,6 +59,9 @@
       "eas": {
         "projectId": "b1d3f661-d875-4a89-96f2-1ab9b91df0c6"
       }
+    },
+    "updates": {
+      "url": "https://u.expo.dev/b1d3f661-d875-4a89-96f2-1ab9b91df0c6"
     }
   }
 }

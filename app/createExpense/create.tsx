@@ -14,7 +14,7 @@ type FormData = {
 };
 
 const expenseSchema = z.object({
-  title: z.string().min(1, "Title is required"),
+  title: z.string().min(1, "Title is required").max(25, "Title is too long"),
   category: z.string().min(1, "Category is required"),
   borrower: z.string().min(1, "Borrower is required"),
   amount: z.string().regex(/^\d+$/, "Amount must be a valid number"),
@@ -30,7 +30,7 @@ export default function Create() {
   });
 
   const [error, setError] = useState<string | null>(null);
-  const categories = ["Food", "Transport", "Shopping", "Bills"];
+  const categories = ["Food", "Transport", "Groceries", "Bike", "Bills"];
   const borrowers = ["Dad", "Mom", "Sister"];
 
   async function handleAddExpense() {
@@ -65,7 +65,8 @@ export default function Create() {
       <TextInput
         selectionColor={"black"}
         placeholder="Title"
-        className="p-3 border border-slate-300 rounded-2xl mb-3 text-base"
+        textAlignVertical="center"
+        className="p-3 border border-slate-300 rounded-2xl mb-3 text-base font-medium"
         placeholderTextColor="#000000"
         value={data.title}
         onChangeText={(text) => setData({ ...data, title: text })}
@@ -74,7 +75,7 @@ export default function Create() {
         <Picker
           selectedValue={data.category}
           onValueChange={(value) => setData({ ...data, category: value })}
-          className="text-base"
+          className="text-base font-medium"
         >
           <Picker.Item label="Select a category" value="" color="#000000" />
           {categories.map((category, index) => (
@@ -91,7 +92,7 @@ export default function Create() {
         <Picker
           selectedValue={data.category}
           onValueChange={(value) => setData({ ...data, borrower: value })}
-          className="text-base"
+          className="text-base font-medium"
         >
           <Picker.Item label="Select a Lender" value="" color="#000000" />
           {borrowers.map((category, index) => (
@@ -107,7 +108,8 @@ export default function Create() {
       <TextInput
         keyboardType="number-pad"
         placeholder="Amount"
-        className="p-3 border border-slate-300 rounded-2xl mb-3 text-base"
+        textAlignVertical="center"
+        className="p-3 border border-slate-300 rounded-2xl mb-3 text-base font-medium"
         placeholderTextColor="#000000"
         selectionColor={"black"}
         value={data.amount}

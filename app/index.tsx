@@ -1,5 +1,4 @@
 import { View, Text, ScrollView, Pressable } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
 import RecentExpense from "@/components/recentExpense";
 import { useLiveQuery } from "drizzle-orm/expo-sqlite";
 import { desc } from "drizzle-orm";
@@ -29,14 +28,12 @@ export default function Home() {
     <ScrollView className="flex-1 px-4">
       <View className="flex-1 pb-5">
         {data.length === 0 ? (
-          <View className="flex items-center justify-center">
-            <Text numberOfLines={1} className="font-medium text-xl">
-              No Expenses this month
-            </Text>
+          <View className="flex-1 flex items-start justify-center mt-5">
+            <Text className="font-medium text-xl">No Expenses Added</Text>
           </View>
         ) : (
           <View className="flex gap-3">
-            <View className="flex flex-row gap-2 mt-2">
+            <View className="flex flex-row gap-2 mt-2 flex-wrap">
               <Pressable
                 onPress={() => {
                   setExpenses(

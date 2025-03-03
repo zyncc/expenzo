@@ -13,6 +13,8 @@ import migrations from "../drizzle/migrations";
 import { useEffect } from "react";
 import Header from "@/components/Header";
 import { db } from "@/lib/db";
+import * as Updates from "expo-updates";
+import { Alert } from "react-native";
 
 SplashScreen.preventAutoHideAsync();
 
@@ -38,11 +40,42 @@ export default function RootLayout() {
     "Poppins-ThinItalic": require("../assets/fonts/Poppins-ThinItalic.ttf"),
   });
 
+  async function onFetchUpdateAsync() {
+    try {
+      const update = await Updates.checkForUpdateAsync();
+      if (update.isAvailable) {
+        Alert.alert(
+          "An Update is Available",
+          "Click Install to Update",
+          [
+            {
+              text: "Install",
+              onPress: async () => {
+                await Updates.fetchUpdateAsync();
+                await Updates.reloadAsync();
+              },
+              style: "default",
+            },
+          ],
+          {
+            cancelable: true,
+          }
+        );
+      }
+    } catch (error) {
+      alert(`${error}`);
+    }
+  }
+
   useEffect(() => {
     if (fontsLoaded) {
       SplashScreen.hideAsync();
     }
   }, [fontsLoaded]);
+
+  useEffect(() => {
+    onFetchUpdateAsync();
+  }, []);
 
   const { success, error } = useMigrations(db, migrations);
 

@@ -17,6 +17,7 @@ export default function RecentExpense({ data }: { data: Expense }) {
           title: data.title,
           price: data.price,
           date: data.date,
+          lender: data.borrower,
         },
       }}
     >
@@ -34,7 +35,7 @@ export default function RecentExpense({ data }: { data: Expense }) {
               ? data.title.slice(0, 25) + "..."
               : data.title}
           </Text>
-          <Text numberOfLines={1} className="font-regular text-base">
+          <Text className="font-medium text-base">
             {data.category.length > 24
               ? data.category.slice(0, 25) + "..."
               : data.category}
@@ -42,13 +43,10 @@ export default function RecentExpense({ data }: { data: Expense }) {
         </View>
         <View className="justify-self-end flex-shrink-0">
           <View>
-            <Text
-              numberOfLines={1}
-              className="font-semiBold text-right text-lg"
-            >
+            <Text className="font-semiBold text-right text-lg">
               {formatCurrency(data.price)}
             </Text>
-            <Text numberOfLines={1} className="text-right font-medium">
+            <Text className="text-right font-medium">
               {new Date(data.date).toDateString().slice(4, 10)}
             </Text>
           </View>
